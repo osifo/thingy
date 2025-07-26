@@ -1,0 +1,9 @@
+
+.idea
+out
+*.iml
+**/__pycache__/*
+__pycache__
+.env
+.venv/*
+.pytest_cache
