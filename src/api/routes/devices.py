@@ -1,8 +1,5 @@
 from fastapi import APIRouter, Depends
-from dependencies import (
-    get_devices_repository,
-    get_users_repository
-)
+from dependencies import get_devices_repository
 from api.controllers.devices import DevicesController
 from domain.devices.repository import IDevicesRepository
 

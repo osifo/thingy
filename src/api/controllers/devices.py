@@ -9,10 +9,6 @@ from domain.devices.schema import (
 # from dependencies import get_device_repository
 
 class DevicesController:
-    @staticmethod
-    def setup():
-        return DevicesController(get_device_repository())
-
     def __init__ (self, repo: IDevicesRepository):
         self.repo = repo
     

@@ -3,26 +3,26 @@ from .schema import Device, DeviceCreate
 
 class IDevicesRepository(ABC):
     @abstractmethod
-    def get_devices(self) -> list[Device]:
+    async def get_devices(self) -> list[Device]:
         """fetch devices"""
         raise NotImplementedError
 
     @abstractmethod
-    def get_device(self, device: str) -> Device:
+    async def get_device(self, device: str) -> Device:
         """fetch device details"""
         raise NotImplementedError
 
     @abstractmethod
-    def get_user_devices(self, user_id: str) -> list[Device]:
+    async  def get_user_devices(self, user_id: str) -> list[Device]:
         """fetch user devices"""
         raise NotImplementedError
 
     @abstractmethod    
-    def add_device(self, device_params: DeviceCreate) -> Device:
+    async def add_device(self, device_params: DeviceCreate) -> Device:
         """adds a user device"""
         raise NotImplementedError
 
     @abstractmethod
-    def delete_device(self, user_id: str) -> Device:
+    async def delete_device(self, user_id: str) -> Device:
         """deletes a user device"""
         raise NotImplementedError
