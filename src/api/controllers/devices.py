@@ -1,14 +1,14 @@
 import traceback;
-from fastapi import APIRouter, HttpException, status, Depends
-from domain.device.repository import IDeviceRepository
-from domain.device.schema import {
+from fastapi import APIRouter, status, Depends
+from domain.devices.repository import IDevicesRepository
+from domain.devices.schema import (
     DeviceResponse,
-    DeviceListResponse
+    DeviceListResponse,
     DeviceCreate
-}
+)
 
-def deviceController(device_repository=Depends(IDeviceRepository)):
-    router = APIRouter(prefix="/v1/movies", tags=["devices"])
+def DevicesController(device_repository=Depends(IDevicesRepository)):
+    router = APIRouter(prefix="/v1/devices", tags=["devices"])
 
     @router.get("/", summary="List devices")
     async def index(filter_params: str | None = None) -> DeviceListResponse:

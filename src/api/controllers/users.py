@@ -1,14 +1,13 @@
-from fastapi import APIRouter, HttpException, Depends
-from domain.user.repository import IUserRepository
-from domain.user.schema import {
+from fastapi import APIRouter, Depends
+from domain.users.repository import IUsersRepository
+from domain.users.schema import (
     UserCreate,
     UserListResponse,
-    UserItemResponse
-}
+    UserResponse
+)
 
-
-def usersController(
-    user_repository = Depends(IUserRepository)
+def UsersController(
+    user_repository = Depends(IUsersRepository)
 ):
     router = APIRouter(prefix="/v1/users", tags=["users"])
     
