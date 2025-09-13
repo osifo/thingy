@@ -1,38 +1,38 @@
 import traceback;
-from fastapi import APIRouter, status, Depends
+from fastapi import APIRouter, status
 from domain.devices.repository import IDevicesRepository
 from domain.devices.schema import (
     DeviceResponse,
     DeviceListResponse,
     DeviceCreate
 )
+# from dependencies import get_device_repository
 
-def DevicesController(device_repository=Depends(IDevicesRepository)):
-    router = APIRouter(prefix="/v1/devices", tags=["devices"])
+class DevicesController:
+    @staticmethod
+    def setup():
+        return DevicesController(get_device_repository())
 
-    @router.get("/", summary="List devices")
-    async def index(filter_params: str | None = None) -> DeviceListResponse:
-        device_list =  device_repository.get_devices(filter_params)
+    def __init__ (self, repo: IDevicesRepository):
+        self.repo = repo
+    
+    async def index(self, filter_params: str | None = None):
+        device_list =  self.repo.get_devices(filter_params)
         return {
             "success": True,
-            data: device_list
+            "data": device_list
         }
     
-    @router.post("/", summary="Add a device")
-    async def create(device_param: DeviceCreate) -> DeviceResponse:
-        new_device = device_repository.add_device(device_param)
+    async def create(self, device_param: DeviceCreate) -> DeviceResponse:
+        new_device = self.repo.add_device(device_param)
         return {
             "success": True,
             "data": new_device
         }
 
-    
-    @router.get("/{device_id}", summary="Get device details")
-    async def show(device_id: str) -> DeviceResponse:
-        device = device_repository.get_device(device_id)
+    async def show(self, device_id: str) -> DeviceResponse:
+        device = self.repo.get_device(device_id)
         return {
             "success": True,
             "data": device
         }
-
-    return router

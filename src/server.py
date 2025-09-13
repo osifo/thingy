@@ -1,6 +1,6 @@
 import sys
 from fastapi import FastAPI;
-from api.controllers import BaseController;
+from api.routes import AppRouter;
 
 app = FastAPI(title="Outside Thingy", version="0.1.0")
 
@@ -14,4 +14,4 @@ async def status():
         "data": "Thingy 0.1.0 running."
     }
 
-BaseController.setup(app)
+AppRouter.setup(app)

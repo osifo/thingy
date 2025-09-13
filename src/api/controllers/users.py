@@ -12,7 +12,7 @@ def UsersController(
     router = APIRouter(prefix="/v1/users", tags=["users"])
     
     @router.get("/", summary="List Users")
-    async def index(filter_params:str | None = None) -> UserListResponse:
+    async def index(filter_params:str | None = None):
         user_data = await user_repository.get_users()
         
         return {
