@@ -1,6 +1,5 @@
 from fastapi import APIRouter, Depends
 from api.controllers.users import get_users_controller
-from domain.users.repository import IUsersRepository
 from domain.users.schema import (
     UserCreate,
     UserListResponse,

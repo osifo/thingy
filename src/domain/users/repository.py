@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from .schema import User, UserCreate
+from domain.users.schema import User, UserCreate
 
 class IUsersRepository(ABC):
     @abstractmethod
@@ -8,16 +8,16 @@ class IUsersRepository(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    async def get_user(self, user_id: str) -> list[User]:
+    async def get_user(self, user_id: str) -> User:
         """fetch users"""
         raise NotImplementedError
     
     @abstractmethod
-    def create_user(self, user_param: UserCreate) -> User:
+    async def create_user(self, user_param: UserCreate) -> User:
         """adds a user device"""
         raise NotImplementedError
     
     @abstractmethod
-    def delete_user(self, user_id: str) -> User:
+    async def delete_user(self, user_id: str) -> User:
         """deletes a user device"""
         raise NotImplementedError

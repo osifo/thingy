@@ -1,1 +1,1 @@
-from .base import BaseConfig
+from core.base import BaseConfig

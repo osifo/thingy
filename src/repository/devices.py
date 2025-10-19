@@ -24,3 +24,6 @@ class DevicesRepository(IDevicesRepository):
     def delete_device(self, user_id: str) -> Device:
         """deletes a user device"""
         raise NotImplementedError
+
+def get_devices_repository() -> DevicesRepository:
+    return DevicesRepository()

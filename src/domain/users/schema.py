@@ -24,5 +24,6 @@ class UserListResponse(User):
     success: bool
     data: list[User]
 
-    class Config:
-        from_attributes = True
+    model_config = {
+        'from_attributes': True
+    }

@@ -8,7 +8,7 @@ from domain.users.schema import (
 )
 
 class UsersController():
-    def __init__(self, repository: IUsersRepository):
+    def __init__(self, repository: IUsersRepository = Depends(get_users_repository)):
         self.repo = repository
     
     async def index(self, filter_params: str | None = None):

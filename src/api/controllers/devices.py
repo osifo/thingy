@@ -1,11 +1,11 @@
-import traceback;
-from fastapi import APIRouter, status
+from fastapi import APIRouter, status, Depends
 from domain.devices.repository import IDevicesRepository
 from domain.devices.schema import (
     DeviceResponse,
     DeviceListResponse,
     DeviceCreate
 )
+from repository.devices import get_devices_repository
 # from dependencies import get_device_repository
 
 class DevicesController:
@@ -32,3 +32,9 @@ class DevicesController:
             "success": True,
             "data": device
         }
+    
+
+def get_devices_controller(repository: IDevicesRepository = Depends(get_devices_repository)):
+    return DevicesController(repository)
+
+
