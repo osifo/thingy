@@ -1,4 +1,6 @@
-from pydantic import BaseModel, Field
+from datetime import datetime
+
+from pydantic import BaseModel, Field, ConfigDict
 from domain.users.schema import User
 
 class DeviceCreate(BaseModel):
@@ -10,17 +12,21 @@ class Device(DeviceCreate):
     id: str
     slug: str
     user: User
+    created_at: datetime
+    updated_at: datetime | None = None
 
-class DeviceCreateResponse(DeviceCreate):
+    model_config = ConfigDict(from_attributes=True)
+
+class DeviceCreateResponse(BaseModel):
     success: bool
     data: Device
 
 
-class DeviceResponse(DeviceCreate):
+class DeviceResponse(BaseModel):
     success: bool
     data: Device
 
-class DeviceListResponse(DeviceCreate):
+class DeviceListResponse(BaseModel):
     success: bool
     data: list[Device]
 

@@ -16,7 +16,7 @@ async def index(
     return await controller.index(filter_params)
 
 @router.post("/", summary="Create user")
-async def create(user_param, controller = Depends(get_users_controller)):
+async def create(user_param: UserCreate, controller = Depends(get_users_controller)):
     return await controller.create(user_param)
 
 @router.get("/{user_id}", summary="Get user details")

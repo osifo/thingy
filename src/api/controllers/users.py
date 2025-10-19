@@ -19,12 +19,11 @@ class UsersController():
         }
 
     async def create(self, user_param: UserCreate) -> UserResponse:
-        user_data = self.repo.create_user(user=user_param)
-            
-        return {
+        user_data = await self.repo.create_user(user_param)
+        return UserResponse.model_validate({
             "success": True,
             "data": user_data
-        }
+        })
 
 
     async def show(user_id_param: str) -> UserResponse:

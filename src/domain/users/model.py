@@ -21,6 +21,7 @@ class User(BaseModel):
     email = Column(String(255), unique=True, index=True, nullable=False)
     firstname = Column(String(255))
     lastname = Column(String(255))
+    username = Column(String(255))
     age = Column(Integer)
     created_at = Column(
         DateTime(timezone=True), 

@@ -16,4 +16,3 @@ def get_database() -> Iterator[Session]:
         raise error
     finally:
         db.close()
-

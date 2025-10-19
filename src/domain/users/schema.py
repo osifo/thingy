@@ -1,29 +1,25 @@
-from pydantic import BaseModel, Field, EmailStr
-
+from pydantic import BaseModel, Field, EmailStr, ConfigDict
+from datetime import datetime
 class UserCreate(BaseModel):
     email: EmailStr
     firstname: str
     lastname: str
-    age: int
+    age: int | None = None
     username: str = Field(min_length=3)
 
 class User(UserCreate):
     id: str
-    is_active: bool
-    last_active_date: str
+    # is_active: bool
+    # last_active_date: str
+    created_at: datetime
+    updated_at: datetime | None = None
 
-class UserCreateResponse(UserCreate):
+    model_config = ConfigDict(from_attributes=True)
+
+class UserResponse(BaseModel):
     success: bool
     data: User
 
-class UserResponse(User):
-    success: bool
-    data: User
-
-class UserListResponse(User):
+class UserListResponse(BaseModel):
     success: bool
     data: list[User]
-
-    model_config = {
-        'from_attributes': True
-    }
