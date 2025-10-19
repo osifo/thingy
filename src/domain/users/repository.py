@@ -3,7 +3,7 @@ from .schema import User, UserCreate
 
 class IUsersRepository(ABC):
     @abstractmethod
-    async def get_users(filter_params: str | None = None) -> list[User]:
+    async def get_users(self, filter_params: str | None = None) -> list[User]:
         """fetch users"""
         raise NotImplementedError
 

@@ -10,3 +10,4 @@ def get_devices_repository() -> IDevicesRepository:
 
 def get_users_repository() -> IUsersRepository:
     return UsersRepository()
+

@@ -1,3 +1,3 @@
 #!/bin/bash
 
-PYTHONPATH=./src uvicorn server:app --reload --port=4000
+PYTHONPATH=./src uv run uvicorn main:app --reload --port=4000

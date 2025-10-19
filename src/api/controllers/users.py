@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends
 from domain.users.repository import IUsersRepository
+from repository.users import get_users_repository
 from domain.users.schema import (
     UserCreate,
     UserListResponse,
@@ -33,3 +34,6 @@ class UsersController():
             "success": True,
             "data": user_data
         }
+
+def get_users_controller(repository: IUsersRepository = Depends(get_users_repository)) -> UsersController:
+    return UsersController(repository)
